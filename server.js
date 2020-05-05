@@ -50,6 +50,13 @@ app.get("/", (request, response) => {
   response.sendFile(`${__dirname}/views/index.html`);
 });
 
+// endpoint for "get whatever random shit"
+app.get("/getAnything", (request, response) => {
+  db.all("SELECT * FROM refs ORDER BY random() LIMIT 1", (err, rows) => {
+    response.send(JSON.stringify(rows));
+  });
+});
+
 // endpoint to get all the dreams in the database
 app.get("/getDreams", (request, response) => {
   db.all("SELECT * from Dreams", (err, rows) => {
