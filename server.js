@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // init sqlite db
-const dbFile = "./.data/sqlite.db";
+const dbFile = "./.data/scribetoy.db";
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database(dbFile);
@@ -37,9 +37,9 @@ db.serialize(() => {
     });
   } else {
     console.log('Database "Dreams" ready to go!');
-    db.each("SELECT * from Dreams", (err, row) => {
+    db.each("SELECT * from refs LIMIT 5", (err, row) => {
       if (row) {
-        console.log(`record: ${row.dream}`);
+        console.log(`record: ${row.ref}`);
       }
     });
   }
