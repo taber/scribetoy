@@ -55,10 +55,14 @@ class Word {
   }
 }
 
+
 function builder() {
   $("#action-zone").empty();
   let rawInput = $("#input-text").val();
+
+  // this does a pretty good job of zapping both niqud & cantillation marks:
   let phraseText = rawInput.replace(/[\u0591-\u05BD\u05BF-\u05C7]/g, "");
+  // split by spaces but also a couple weird Biblical Hebrew separators
   let phrase = phraseText.split(/[\s…׀]/g);
 
   let wordList = new Array();
@@ -113,23 +117,30 @@ function styler() {
 
   a.addClass(size);
   a.addClass(font);
+  
+  let glyphNames = $('.glyph-name');
+  let glyphDisplays = $('.glyph-display');
 
   if (show == "show-both") {
-    $(".glyph-name").show();
-    $(".glyph-display").show();
+    glyphNames.show();
+    glyphDisplays.show();
   } else if (show == "show-letters") {
-    $(".glyph-display").show();
-    $(".glyph-name").hide();
+    glyphNames.hide();
+    glyphDisplays.show();
   } else {
-    $(".glyph-name").show();
-    $(".glyph-display").hide();
+    glyphNames.show();
+    glyphDisplays.hide();
   }
 }
 
 function getFromSefaria(ref) {
-  url = "https://www.sefaria.org/api/texts/" + ref + "?language=he&context=0&version=Tanach%20with%20Text%20Only";
-  $.get(url, function (data) {
-    //console.log(data);
+  url = "https://www.sefaria.org/api/texts/" + ref;
+  params = {
+    'language':'he',
+    'version':'Tanach with Text Only',
+    'context':0
+  };
+  $.get(url, params, function (data) {
     $('#input-text').val(data.he);
     builder();
     styler();
@@ -156,8 +167,6 @@ $(document).ready(function () {
 
   $("#grab").on("click", function () {
     event.preventDefault();
-    let book = $("#book-select").val();
-    let passage = $("#passage-entry").val();
     $.get('/getAnything', function (data) {
       let s = getFromSefaria(data.ref);
     });

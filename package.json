@@ -10,21 +10,19 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
     "express": "^4.17.1",
-    "request": "^2.88.2",
     "sqlite3": "^4.2.0"
   },
   "engines": {
     "node": "12.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-sqlite"
+    "url": "https://github.com/taber/scribetoy"
   },
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
+    "hebrew",
     "express"
   ]
 }
