@@ -119,12 +119,19 @@ function styler() {
   }
 }
 
-function sefRef() {
-  let book = $("#book-select").val();
-  let context = 0;
-  let lang = "he";
+function getFromSefaria(ref) {
+  url = "https://www.sefaria.org/api/texts/" + ref + "?language=he&context=0&version=Tanach%20with%20Text%20Only";
+  $.get(url, function(data) {
+    console.log(data);
+    $('#input-text').val(data.he);
+    builder();
+    styler();
+    let h = "<strong>" + data.ref + " (" + data.heRef + "):</strong> " + data.text;
+    $('#reference-display').html(h);
+  });
 }
 
+// TODO: change everything ohmigod this MESS but it WORKS so!!!
 $(document).ready(function() {
   builder();
   styler();
@@ -144,6 +151,8 @@ $(document).ready(function() {
     event.preventDefault();
     let book = $("#book-select").val();
     let passage = $("#passage-entry").val();
-    console.log(book + "///" + passage);
+    $.get('/getAnything', function(data) {
+      let s = getFromSefaria(data.ref);
+    });
   });
 });

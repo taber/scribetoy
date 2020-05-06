@@ -20,54 +20,14 @@
       <form autocomplete="off">
         <fieldset id="inputs">
           <legend>Input Text:</legend>
-          <div id="sefaria-import" style="display:none;">
+          <div id="sefaria-import">
             <label for="book-select">Tanakh Roulette:</label>
-            <select name="book" id="book-select">
-              <option value="Genesis">Genesis (בראשית)</option>
-              <option value="Exodus">Exodus (שמות)</option>
-              <option value="Leviticus">Leviticus (ויקרא)</option>
-              <option value="Numbers">Numbers (במדבר)</option>
-              <option value="Deuteronomy">Deuteronomy (דברים)</option>
-              <option value="Joshua">Joshua (יהושע)</option>
-              <option value="Judges">Judges (שפטים)</option>
-              <option value="I Samuel">I Samuel (שמואל)</option>
-              <option value="II Samuel">II Samuel (שמואל)</option>
-              <option value="I Kings">I Kings (מלכים)</option>
-              <option value="II Kings">II Kings (מלכים)</option>
-              <option value="Isaiah">Isaiah (ישעיהו)</option>
-              <option value="Jeremiah">Jeremiah (ירמיהו)</option>
-              <option value="Ezekiel">Ezekiel (יחזקאל)</option>
-              <option value="Hosea">Hosea (הושע)</option>
-              <option value="Joel">Joel (יואל)</option>
-              <option value="Amos">Amos (עמוס)</option>
-              <option value="Obadiah">Obadiah (עבדיה)</option>
-              <option value="Jonah">Jonah (יונה)</option>
-              <option value="Micah">Micah (מיכה)</option>
-              <option value="Nahum">Nahum (נחום)</option>
-              <option value="Habakkuk">Habakkuk (חבקוק)</option>
-              <option value="Zephaniah">Zephaniah (צפניה)</option>
-              <option value="Haggai">Haggai (חגי)</option>
-              <option value="Zechariah">Zechariah (זכריה)</option>
-              <option value="Malachi">Malachi (מלאכי)</option>
-              <option value="Psalms">Psalms (תהלים)</option>
-              <option value="Proverbs">Proverbs (משלי)</option>
-              <option value="Job">Job (איוב)</option>
-              <option value="Song of Songs">Song of Songs (שיר השירים)</option>
-              <option value="Ruth">Ruth (רות)</option>
-              <option value="Lamentations">Lamentations (איכה)</option>
-              <option value="Ecclesiastes">Ecclesiastes (קהלת)</option>
-              <option value="Esther">Esther (אסתר)</option>
-              <option value="Daniel">Daniel (דניאל)</option>
-              <option value="Ezra">Ezra (עזרא)</option>
-              <option value="Nehemiah">Nehemiah (עזרא)</option>
-              <option value="I Chronicles">I Chronicles (דברי הימים)</option>
-              <option value="II Chronicles">II Chronicles (דברי הימים)</option>
-            </select>
             <button name="grab" id="grab">Grab Random Verse</button>
           </div>
           <textarea id="input-text" dir="rtl">
 וַיְהִ֗י בִּֽהְי֣וֹת יְהוֹשֻׁעַ֮ בִּירִיחוֹ֒ וַיִּשָּׂ֤א עֵינָיו֙ וַיַּ֔רְא וְהִנֵּה־אִישׁ֙ עֹמֵ֣ד לְנֶגְדּ֔וֹ וְחַרְבּ֥וֹ שְׁלוּפָ֖ה בְּיָד֑וֹ וַיֵּ֨לֶךְ יְהוֹשֻׁ֤עַ אֵלָיו֙ וַיֹּ֣אמֶר ל֔וֹ הֲלָ֥נוּ אַתָּ֖ה אִם־לְצָרֵֽינוּ׃ וַיֹּ֣אמֶר ׀ לֹ֗א כִּ֛י אֲנִ֥י שַׂר־צְבָֽא־יְהוָ֖ה עַתָּ֣ה בָ֑אתִי וַיִּפֹּל֩ יְהוֹשֻׁ֨עַ אֶל־פָּנָ֥יו אַ֙רְצָה֙ וַיִּשְׁתָּ֔חוּ…
           </textarea>
+          <span id="reference-display"></span>
         </fieldset>
 
         <div id="options">
@@ -147,6 +107,7 @@
 
     <main>
       <div id="action-zone"></div>
+
     </main>
 
     <footer>
