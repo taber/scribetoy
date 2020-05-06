@@ -113,6 +113,7 @@ legend {
 main {
   padding: 2em;
   background-color: #fff;
+  min-height:25em;
 }
 
 footer {

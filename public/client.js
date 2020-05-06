@@ -89,6 +89,11 @@ function builder() {
     wordBlock.append(glyphsBlock);
     $("#action-zone").append(wordBlock);
   });
+
+  // there's a better solution than rebinding this but.... whatever for now
+  $(".word").on("click", function() {
+    $(this).toggleClass("done");
+  });
 }
 
 function styler() {
@@ -124,7 +129,7 @@ function styler() {
 function getFromSefaria(ref) {
   url = "https://www.sefaria.org/api/texts/" + ref + "?language=he&context=0&version=Tanach%20with%20Text%20Only";
   $.get(url, function(data) {
-    console.log(data);
+    //console.log(data);
     $('#input-text').val(data.he);
     builder();
     styler();
