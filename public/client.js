@@ -91,7 +91,7 @@ function builder() {
   });
 
   // there's a better solution than rebinding this but.... whatever for now
-  $(".word").on("click", function() {
+  $(".word").on("click", function () {
     $(this).toggleClass("done");
   });
 }
@@ -128,7 +128,7 @@ function styler() {
 
 function getFromSefaria(ref) {
   url = "https://www.sefaria.org/api/texts/" + ref + "?language=he&context=0&version=Tanach%20with%20Text%20Only";
-  $.get(url, function(data) {
+  $.get(url, function (data) {
     //console.log(data);
     $('#input-text').val(data.he);
     builder();
@@ -139,26 +139,26 @@ function getFromSefaria(ref) {
 }
 
 // TODO: change everything ohmigod this MESS but it WORKS so!!!
-$(document).ready(function() {
+$(document).ready(function () {
   builder();
   styler();
-  $("#input-text").on("change", function() {
+  $("#input-text").on("change", function () {
     builder();
   });
   $('#input-text').on('keyup', builder);
-  $("form").on("change", function() {
+  $("form").on("change", function () {
     styler();
   });
 
-  $(".word").on("click", function() {
+  $(".word").on("click", function () {
     $(this).toggleClass("done");
   });
 
-  $("#grab").on("click", function() {
+  $("#grab").on("click", function () {
     event.preventDefault();
     let book = $("#book-select").val();
     let passage = $("#passage-entry").val();
-    $.get('/getAnything', function(data) {
+    $.get('/getAnything', function (data) {
       let s = getFromSefaria(data.ref);
     });
   });
