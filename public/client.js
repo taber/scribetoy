@@ -34,7 +34,9 @@ function exportLetterNames() {
     "״": "Gershayim",
     "ֽ": "Meteg",
     "׃": "Sof Pasuq",
-    "׆": "Nun Hafukha"
+    "׆": "Nun Hafukha",
+    "(": "",
+    ")": ""
   };
 }
 
