@@ -13,7 +13,7 @@ Copy and paste a text into the input field, and it'll do a few things for you:
 When you're done with a word, you can click or tap it to mark it as finished so you don't lose your place if you get up to refresh your coffee.
 
 ## To do ideas:
-- Add ability to grab random verse from Sefaria
+- ~~Add ability to grab random verse from Sefaria~~ (okay done!)
 - Next/Previous buttons for navigating through a verse series?
 - Maybe a "read the letters to me" mode?
 
