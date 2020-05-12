@@ -152,6 +152,11 @@ function getFromSefaria(ref) {
 // TODO: change everything ohmigod this MESS but it WORKS so!!!
 $(document).ready(function () {
   
+  // okay let's initialize with something but I need to fix this :P
+  $.get('/getAnything', function (data) {
+    let s = getFromSefaria(data.ref);
+  });
+
   builder();
   styler();
 
@@ -169,4 +174,5 @@ $(document).ready(function () {
       let s = getFromSefaria(data.ref);
     });
   });
+
 });
