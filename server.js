@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(static("public"));
+app.use(express.static("public"));
+
 
 // init sqlite db
 const dbFile = "./scribetoy.db";
