@@ -1,16 +1,15 @@
 // init project
-const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
-const fs = require("fs");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+import express, { static } from "express";
+import { urlencoded, json } from "body-parser";
 
-app.use(express.static("public"));
+const app = express();
+app.use(urlencoded({ extended: true }));
+app.use(json());
+
+app.use(static("public"));
 
 // init sqlite db
 const dbFile = "./scribetoy.db";
-const exists = fs.existsSync(dbFile);
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database(dbFile);
 

@@ -151,15 +151,13 @@ function getFromSefaria(ref) {
 
 // TODO: change everything ohmigod this MESS but it WORKS so!!!
 $(document).ready(function () {
+  
   builder();
   styler();
-  $("#input-text").on("change", function () {
-    builder();
-  });
+
+  $("#input-text").on("change", builder);
   $('#input-text').on('keyup', builder);
-  $("form").on("change", function () {
-    styler();
-  });
+  $("form").on("change", styler);
 
   $(".word").on("click", function () {
     $(this).toggleClass("done");
