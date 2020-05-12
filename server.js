@@ -1,7 +1,6 @@
 // init project
-import express, { static } from "express";
-import { urlencoded, json } from "body-parser";
-
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 app.use(urlencoded({ extended: true }));
 app.use(json());
