@@ -34,7 +34,9 @@ function exportLetterNames() {
     "״": "Gershayim",
     "ֽ": "Meteg",
     "׃": "Sof Pasuq",
-    "׆": "Nun Hafukha"
+    "׆": "Nun Hafukha",
+    "(": "",
+    ")": ""
   };
 }
 
@@ -53,10 +55,14 @@ class Word {
   }
 }
 
+
 function builder() {
   $("#action-zone").empty();
   let rawInput = $("#input-text").val();
+
+  // this does a pretty good job of zapping both niqud & cantillation marks:
   let phraseText = rawInput.replace(/[\u0591-\u05BD\u05BF-\u05C7]/g, "");
+  // split by spaces but also a couple weird Biblical Hebrew separators
   let phrase = phraseText.split(/[\s…׀]/g);
 
   let wordList = new Array();
@@ -87,6 +93,11 @@ function builder() {
     wordBlock.append(glyphsBlock);
     $("#action-zone").append(wordBlock);
   });
+
+  // there's a better solution than rebinding this but.... whatever for now
+  $(".word").on("click", function () {
+    $(this).toggleClass("done");
+  });
 }
 
 function styler() {
@@ -106,44 +117,56 @@ function styler() {
 
   a.addClass(size);
   a.addClass(font);
+  
+  let glyphNames = $('.glyph-name');
+  let glyphDisplays = $('.glyph-display');
 
   if (show == "show-both") {
-    $(".glyph-name").show();
-    $(".glyph-display").show();
+    glyphNames.show();
+    glyphDisplays.show();
   } else if (show == "show-letters") {
-    $(".glyph-display").show();
-    $(".glyph-name").hide();
+    glyphNames.hide();
+    glyphDisplays.show();
   } else {
-    $(".glyph-name").show();
-    $(".glyph-display").hide();
+    glyphNames.show();
+    glyphDisplays.hide();
   }
 }
 
-function sefRef() {
-  let book = $("#book-select").val();
-  let context = 0;
-  let lang = "he";
+function getFromSefaria(ref) {
+  url = "https://www.sefaria.org/api/texts/" + ref;
+  params = {
+    'language':'he',
+    'version':'Tanach with Text Only',
+    'context':0
+  };
+  $.get(url, params, function (data) {
+    $('#input-text').val(data.he);
+    builder();
+    styler();
+    let h = "<strong>" + data.ref + " (" + data.heRef + "):</strong> " + data.text;
+    $('#reference-display').html(h);
+  });
 }
 
-$(document).ready(function() {
+// TODO: change everything ohmigod this MESS but it WORKS so!!!
+$(document).ready(function () {
+  
   builder();
   styler();
-  $("#input-text").on("change", function() {
-    builder();
-  });
-  $('#input-text').on('keyup', builder);
-  $("form").on("change", function() {
-    styler();
-  });
 
-  $(".word").on("click", function() {
+  $("#input-text").on("change", builder);
+  $('#input-text').on('keyup', builder);
+  $("form").on("change", styler);
+
+  $(".word").on("click", function () {
     $(this).toggleClass("done");
   });
 
-  $("#grab").on("click", function() {
+  $("#grab").on("click", function () {
     event.preventDefault();
-    let book = $("#book-select").val();
-    let passage = $("#passage-entry").val();
-    console.log(book + "///" + passage);
+    $.get('/getAnything', function (data) {
+      let s = getFromSefaria(data.ref);
+    });
   });
 });

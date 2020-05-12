@@ -113,6 +113,7 @@ legend {
 main {
   padding: 2em;
   background-color: #fff;
+  min-height: 25em;
 }
 
 footer {
@@ -249,6 +250,15 @@ footer {
 
 .word:active {
   background-color: #fe9000;
+}
+
+#reference-display {
+  display: inline-block;
+  padding-top: 0.25em;
+  font-size: 0.9em;
+}
+#reference-display strong {
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 820px) {

@@ -1,25 +1,22 @@
-# hello-sqlite
+# scribetoy
 
-A starter that has a database
+A Hebrew writing practice tool that turns a chaotic block of text into something easy to read and review on any size screen.
 
-- This app uses sqlite but you can power your apps with [a number of other storage options](https://glitch.com/storage)
-- `sqlite.db` is created and put into the `.data` folder, a hidden directory whose contents aren’t copied when a project is remixed. You can see the contents of `.data` in the console under "Logs"
-- To save to the database, remix this app!
+## How do I use it?
 
-On the front-end,
+Copy and paste a text into the input field, and it'll do a few things for you:
 
-- Edit `views/index.html`,  `public/style.css`, and `public/client.js`
-- Drag in `assets`, like images or music, to add them to your project
+- Strip all [niqqud](https://en.wikipedia.org/wiki/Niqqud) (*vowels*) and [cantillation marks](https://en.wikipedia.org/wiki/Hebrew_cantillation) (*chanting sounds*) from the text, which are their own entire thing and you don't need to be wasting time trying to copy those to get practice writing the letters, *certainly* not the cantillation marks!
+- Break the text down into words so you can look at them one by one, and then
+- Break each of those words down into the letters so you can read them in order, as letter forms, names, or both, and write them down.
 
-On the back-end,
+When you're done with a word, you can click or tap it to mark it as finished so you don't lose your place if you get up to refresh your coffee.
 
-- Your app starts at `server.js`
-- Add frameworks and packages in `package.json`
-- Safely store app secrets in `.env` (nobody can see this but you and people you invite)
+## To do ideas:
+- ~~Add ability to grab random verse from Sefaria~~ (okay done!)
+- Next/Previous buttons for navigating through a verse series?
+- Maybe a "read the letters to me" mode?
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
+### License
 
-
-## Made by [Glitch](https://glitch.com/)
-
-\ ゜ o ゜)ノ
+MIT
