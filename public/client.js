@@ -75,6 +75,7 @@ function builder() {
   // want to redo this in standard ES6
   wordList.forEach((element, wordNumber) => {
     let wordBlock = $('<div class="word" id="word-' + wordNumber + '">');
+
     wordBlock.append(
       $('<span class="word-number">' + (wordNumber + 1) + "</span>")
     );
