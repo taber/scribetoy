@@ -7,13 +7,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-
 // init sqlite db
 const dbFile = "./scribetoy.db";
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database(dbFile);
 
 app.get("/", (request, response) => {
+  response.append('Content-Type', 'text/html; charset=UTF-8');
   response.sendFile(`${__dirname}/views/index.html`);
 });
 

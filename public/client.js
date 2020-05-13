@@ -68,11 +68,11 @@ function builder() {
   let wordList = new Array();
   phrase.forEach(element => {
     if (element != "") {
-      w = new Word(element);
-      wordList.push(w);
+      wordList.push(new Word(element));
     }
   });
 
+  // want to redo this in standard ES6
   wordList.forEach((element, wordNumber) => {
     let wordBlock = $('<div class="word" id="word-' + wordNumber + '">');
     wordBlock.append(
@@ -117,7 +117,7 @@ function styler() {
 
   a.addClass(size);
   a.addClass(font);
-  
+
   let glyphNames = $('.glyph-name');
   let glyphDisplays = $('.glyph-display');
 
@@ -136,9 +136,9 @@ function styler() {
 function getFromSefaria(ref) {
   url = "https://www.sefaria.org/api/texts/" + ref;
   params = {
-    'language':'he',
-    'version':'Tanach with Text Only',
-    'context':0
+    'language': 'he',
+    'version': 'Tanach with Text Only',
+    'context': 0
   };
   $.get(url, params, function (data) {
     $('#input-text').val(data.he);
@@ -151,7 +151,7 @@ function getFromSefaria(ref) {
 
 // TODO: change everything ohmigod this MESS but it WORKS so!!!
 $(document).ready(function () {
-  
+
   // okay let's initialize with something but I need to fix this :P
   $.get('/getAnything', function (data) {
     let s = getFromSefaria(data.ref);
