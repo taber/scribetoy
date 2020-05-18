@@ -36,7 +36,7 @@ function exportLetterNames() {
     "׃": "Sof Pasuq",
     "׆": "Nun Hafukha",
     "(": "",
-    ")": ""
+    ")": "",
   };
 }
 
@@ -47,14 +47,13 @@ class Word {
   constructor(w) {
     this.word = w;
     let rawGlyphs = w.trim().split("");
-    rawGlyphs.forEach(element => {
+    rawGlyphs.forEach((element) => {
       if (letterNames[element] != "undefined") {
         this.glyphs.push(element);
       }
     });
   }
 }
-
 
 function builder() {
   $("#action-zone").empty();
@@ -66,7 +65,7 @@ function builder() {
   let phrase = phraseText.split(/[\s…׀]/g);
 
   let wordList = new Array();
-  phrase.forEach(element => {
+  phrase.forEach((element) => {
     if (element != "") {
       wordList.push(new Word(element));
     }
@@ -82,7 +81,7 @@ function builder() {
     wordBlock.append($('<div class="word-display">' + element.word + "</div>"));
     let glyphsBlock = $('<div class="glyphs">');
 
-    element.glyphs.forEach(elem => {
+    element.glyphs.forEach((elem) => {
       let glyph = $('<div class="glyph">');
       glyph.append($('<span class="glyph-display">' + elem + "</span>"));
       glyph.append(
@@ -113,14 +112,14 @@ function styler() {
     "font-classic",
     "size-normal",
     "size-bigger",
-    "size-biggest"
+    "size-biggest",
   ]);
 
   a.addClass(size);
   a.addClass(font);
 
-  let glyphNames = $('.glyph-name');
-  let glyphDisplays = $('.glyph-display');
+  let glyphNames = $(".glyph-name");
+  let glyphDisplays = $(".glyph-display");
 
   if (show == "show-both") {
     glyphNames.show();
@@ -137,32 +136,32 @@ function styler() {
 function getFromSefaria(ref) {
   url = "https://www.sefaria.org/api/texts/" + ref;
   params = {
-    'language': 'he',
-    'version': 'Tanach with Text Only',
-    'context': 0
+    language: "he",
+    version: "Tanach with Text Only",
+    context: 0,
   };
   $.get(url, params, function (data) {
-    $('#input-text').val(data.he);
+    $("#input-text").val(data.he);
     builder();
     styler();
-    let h = "<strong>" + data.ref + " (" + data.heRef + "):</strong> " + data.text;
-    $('#reference-display').html(h);
+    let h =
+      "<strong>" + data.ref + " (" + data.heRef + "):</strong> " + data.text;
+    $("#reference-display").html(h);
   });
 }
 
 // TODO: change everything ohmigod this MESS but it WORKS so!!!
 $(document).ready(function () {
-
   // okay let's initialize with something but I need to fix this :P
-  $.get('/getAnything', function (data) {
-    let s = getFromSefaria(data.ref);
+  $.get("/getAnything", function (data) {
+    getFromSefaria(data.ref);
   });
 
   builder();
   styler();
 
   $("#input-text").on("change", builder);
-  $('#input-text').on('keyup', builder);
+  $("#input-text").on("keyup", builder);
   $("form").on("change", styler);
 
   $(".word").on("click", function () {
@@ -171,9 +170,8 @@ $(document).ready(function () {
 
   $("#grab").on("click", function () {
     event.preventDefault();
-    $.get('/getAnything', function (data) {
-      let s = getFromSefaria(data.ref);
+    $.get("/getAnything", function (data) {
+      getFromSefaria(data.ref);
     });
   });
-
 });
