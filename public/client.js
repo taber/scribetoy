@@ -73,19 +73,19 @@ function builder() {
 
   // want to redo this in standard ES6
   wordList.forEach((element, wordNumber) => {
-    let wordBlock = $('<div class="word" id="word-' + wordNumber + '">');
+    let wordBlock = $(`<div class="word" id="word-${wordNumber}">`);
 
     wordBlock.append(
-      $('<span class="word-number">' + (wordNumber + 1) + "</span>")
+      $(`<span class="word-number">${wordNumber + 1}</span>`)
     );
-    wordBlock.append($('<div class="word-display">' + element.word + "</div>"));
+    wordBlock.append($(`<div class="word-display">${element.word}</div>`));
     let glyphsBlock = $('<div class="glyphs">');
 
     element.glyphs.forEach((elem) => {
       let glyph = $('<div class="glyph">');
-      glyph.append($('<span class="glyph-display">' + elem + "</span>"));
+      glyph.append($(`<span class="glyph-display">${elem}</span>`));
       glyph.append(
-        $('<span class="glyph-name">' + letterNames[elem] + "</span>")
+        $(`<span class="glyph-name">${letterNames[elem]}</span>`)
       );
       glyphsBlock.append(glyph);
     });
@@ -145,7 +145,7 @@ function getFromSefaria(ref) {
     builder();
     styler();
     let h =
-      "<strong>" + data.ref + " (" + data.heRef + "):</strong> " + data.text;
+      `<strong>${data.ref} (${data.heRef}):</strong> ${data.text}`;
     $("#reference-display").html(h);
   });
 }
@@ -171,6 +171,13 @@ $(document).ready(function () {
   $("#grab").on("click", function () {
     event.preventDefault();
     $.get("/getAnything", function (data) {
+      getFromSefaria(data.ref);
+    });
+  });
+
+  $('#bookpick').on('change', function() {
+    let v = $('#bookpick').val();
+    $.get(`/getByBook/${v}`, function(data) {
       getFromSefaria(data.ref);
     });
   });
